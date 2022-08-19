@@ -1,3 +1,7 @@
 --> rospy.spin() itu fungsinya untuk menjalankan callback, jadi semua fungsi callback dijalankan saat mencapai rospy.spin() ini
 
---> kayaknya, kalo node cpp harus di build ulang biar kedetect perubahan pada kodenya, kalo py gaperlu build ulang bisa langsung kedetect perubahannya
+--> kayaknya, kalo ngubah kode di node cpp, harus dibuild ulang biar ngaruh perubahannya,
+    sedangkan kalo node py, gaperlu dibuild ulang udah bisa ngaruh perubahannya
+
+--> waktu dibuild (catkin_make), hanya mengecek node yang cpp, jadi kalo salah bisa keliatan
+    sedangkan untuk node py harus dirun dulu nodenya buat tau bener atau salah
