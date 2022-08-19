@@ -1,0 +1,43 @@
+Service merupakan cara lain untuk passing data antar node dalam ROS.
+Service memungkinkan salah satu node untuk memanggil sebuah fungsi dari node yang lain.
+Layanan service itu sendiri diatur oleh server node, yang merupakan tempat dimana fungsi callback berada dan dapat dipanggil.
+Sedangkan, request untuk layanan service dipanggil oleh client node.
+
+Jadi, dengan service kita dapat menjalankan node-node di komputer yang berbeda.
+misal, terdapat komputer A dan komputer B,
+node di komputer A ingin melakukan pemrosesan yang berat, karena spek komputer B lebih memadai,
+maka komputer B dapat bertindak sebagai server node untuk melayani request dari client node di komputer A.
+
+Berbeda dengan topics,
+service adalah layanan blocking call, dimana client node akan terhenti sampai servernya menyelesaikan request dari client.
+Jadi, service seharusnya tidak digunakan untuk layanan yang memerlukan proses komputasi yang lama.
+Salah satu penggunaan service misalnya untuk melakukan komputasi Inverse Kinematic (IK), inference (object classification).
+
+=================================================================================================================================
+
+ROS tools yang bisa digunakan: (command terminal)
+    - rossrv: untuk melihat informasi yang berhubungan dengan srv file definition
+            (seperti informasi ttg jenis respon, jenis request, tipedatanya, dll)
+    - rosservice: untuk melihat service apa saja yang sedang berjalan
+
+=================================================================================================================================
+
+Service definition file (srv)
+srv file memiliki kesamaan struktur seperti msg file. Namun, srv memiliki request dan response.
+Sehingga memungkinkan antara kedunya memiliki tipedata yang berbeda.
+contohnya:
+            std_msgs/string words        ---> request
+            ---
+            std_msgs/Int32 counts        ---> respond
+
+standar penamaan service file selalu dimulai dengan verb, misal CountWords, RecognizeImage, ComputeIK, dll.
+
+request juga bisa lebih dari satu message, begitu pula responnya.
+contohnya:
+            std_msgs/string words
+            std_msgs/Bool count_articles
+            ---
+            std_msgs/Int32 num_words
+            std_msgs/Int32 num_articles
+
+selanjutnya kita bisa menambahkan file .srv ke CMakeList

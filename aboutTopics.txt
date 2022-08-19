@@ -1,0 +1,9 @@
+Salah satu cara passing data antar node adalah dengan topic.
+Topic merupakan semacam media supaya antar node dapat saling berinteraksi.
+Node yang bertindak mengirim data disebut publisher node,
+Sedangkan node yang bertindak mengambil data disebut subscriber node.
+
+Data yang dipassing di dalam suatu topic memiliki tipedata tersendiri.
+
+Satu topic dapat disubscribe oleh banyak node
+begitu pula banyak node dapat mempublish ke satu topic

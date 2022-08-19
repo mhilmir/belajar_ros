@@ -1,0 +1,3 @@
+--> rospy.spin() itu fungsinya untuk menjalankan callback, jadi semua fungsi callback dijalankan saat mencapai rospy.spin() ini
+
+--> kayaknya, kalo node cpp harus di build ulang biar kedetect perubahan pada kodenya, kalo py gaperlu build ulang bisa langsung kedetect perubahannya

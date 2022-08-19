@@ -1,0 +1,9 @@
+PID ITU PENTING BANGETT
+
+// p tambah gede, tambah cepet nyampe tujuan
+// d buat overshoot, kalo overshoot (terlalu berosilasi), coba d nya kecilin
+// i jangan diubah-ubah dulu
+
+
+
+btw, kayaknya lebih enak pid nya sendiri2, jadi buat takeoff ada pid sendiri, buat setelah takeoff ada pid sendiri
