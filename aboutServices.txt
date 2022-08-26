@@ -15,7 +15,7 @@ Salah satu penggunaan service misalnya untuk melakukan komputasi Inverse Kinemat
 
 =================================================================================================================================
 
-ROS tools yang bisa digunakan: (command terminal)
+ROS tools (command terminal) yang bisa digunakan:
     - rossrv: untuk melihat informasi yang berhubungan dengan srv file definition
             (seperti informasi ttg jenis respon, jenis request, tipedatanya, dll)
     - rosservice: untuk melihat service apa saja yang sedang berjalan
