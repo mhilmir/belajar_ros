@@ -2,7 +2,7 @@
 /// this note contains step-to-step for add service to existing workspace ///
 /////////////////////////////////////////////////////////////////////////////
 1. masuk ke file caktin_ws/src, lalu buat packagenya
-    catkin_create_pkg (srvPackageName) std_msgs message_generation
+    catkin_create_pkg (srvPackageName) std_msgs rospy message_generation
 
 2. masuk ke folder packagenya, lalu edit CMakeListnya, tambahkan:
     generate_messages(
@@ -14,21 +14,27 @@
             message_generation
             std_msgs
     )
+    
+3. dalam CMakeList juga, hapus:
+    include_directories(
+        # include
+        ${catkin_INCLUDE_DIRS}
+    )
 
-3. edit package.xml, tambahkan:
-    <exec_depend>message_runtime</exec_depend>
-    <exec_depend>message_generation</exec_depend>
+4. edit package.xml, tambahkan:
+    <exec_depend>message_runtime</exec_depend>          ---> ini doang sebenere
+    <exec_depend>message_generation</exec_depend>       ---> kalo error, tambahin ini
 
-4. buat folder bernama srv, buat file .srv di dalamnya, misal namanya CountWords.srv
+5. buat folder bernama srv, buat file .srv di dalamnya, misal namanya CountWords.srv
 
-5. isi file .srv tersebut dengan tipe data request dan respond, misal:
+6. isi file .srv tersebut dengan tipe data request dan respond, misal:
     std_msgs/String     words
     std_msgs/Bool       count_articles
     ---
     std_msgs/Int32      num_words
     std_msgs/Int32      num_articles
 
-6. lalu tinggal build, kalo kita sedang berada di directory package, tinggal ketik command
+7. lalu tinggal build, kalo kita sedang berada di directory package, tinggal ketik command
     catkin_make --this
     atau
     catkin build --this
