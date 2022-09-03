@@ -1,10 +1,24 @@
 /////////////////////////////////////////////////////////////////////////////
-/// this note contains step-to-step for add service to existing workspace ///
+///                          create srv file                              ///
 /////////////////////////////////////////////////////////////////////////////
-1. masuk ke file caktin_ws/src, lalu buat packagenya
-    catkin_create_pkg (srvPackageName) std_msgs rospy message_generation
 
-2. masuk ke folder packagenya, lalu edit CMakeListnya, tambahkan:
+1. masuk ke file caktin_ws/src, lalu buat packagenya
+    catkin_create_pkg (srvPackageName) std_msgs message_generation
+
+2. masuk ke package, buat folder bernama srv dan buat file .srv di dalamnya ---> (srvFileName).srv , misal CountWords.srv
+
+3. isi file .srv tersebut dengan tipe data request dan respond, misal:
+    std_msgs/String     words
+    std_msgs/Bool       count_articles
+    ---
+    std_msgs/Int32      num_words
+    std_msgs/Int32      num_articles
+
+4. lalu edit CMakeListnya, tambahkan:
+    add_service_files(
+        FILES
+            (srvFileName).srv
+    )
     generate_messages(
         DEPENDENCIES
             std_msgs
@@ -14,47 +28,37 @@
             message_generation
             std_msgs
     )
-    
-3. dalam CMakeList juga, hapus:
-    include_directories(
-        # include
-        ${catkin_INCLUDE_DIRS}
-    )
 
-4. edit package.xml, tambahkan:
-    <exec_depend>message_runtime</exec_depend>          ---> ini doang sebenere
-    <exec_depend>message_generation</exec_depend>       ---> kalo error, tambahin ini
+5. edit package.xml, tambahkan:
+    <exec_depend>message_runtime</exec_depend>
+    <exec_depend>message_generation</exec_depend>
 
-5. buat folder bernama srv, buat file .srv di dalamnya, misal namanya CountWords.srv
-
-6. isi file .srv tersebut dengan tipe data request dan respond, misal:
-    std_msgs/String     words
-    std_msgs/Bool       count_articles
-    ---
-    std_msgs/Int32      num_words
-    std_msgs/Int32      num_articles
-
-7. lalu tinggal build, kalo kita sedang berada di directory package, tinggal ketik command
+6. lalu tinggal build, kalo kita sedang berada di directory package, tinggal ketik command
     catkin_make --this
     atau
     catkin build --this
+
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////
 ///                          Buat Server nya                              ///
 /////////////////////////////////////////////////////////////////////////////
 
-1. catkin_create_pkg rospy_simple_service rospy (srvPackageName), lalu masuk ke package directory nya.
+1. catkin_create_pkg (servicePackageName) rospy (srvPackageName)
 
-2. nah sekarang kita akan ganti struktur directory packagenya.
-   hapus folder 'src', lalu buat dua folder bernama 'common' dan 'ros'.
-   common adalah tempat kita menaruh hal-hal yang tidak berkaitan dengan ros.
-   sedangkan ros adalah tempat kita menaruh hal-hal yang berkaitan dengan ros.
+2. tambahkan node servernya, misal namanya the_server_rospy.py (contoh kode ada di folder ini)
+   Jangan lupa buat file tsb executable !!!
 
-3. masuk ke dalam folder 'ros' lalu buat folder 'src' (untuk menaruh .cpp) dan 'scripts' (untuk menaruh .py)
+3. tambahkan di CMakeList: (kayak node py pada umumnya)
+    catkin_install_python(PROGRAMS
+        scripts/(nodeName).py
+        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+    )
 
-4. buat servernya, misal namanya simple_server_rospy.py (contoh kode ada di folder ini), jangan lupa buat file tsb executable
+4. build lagi packagenya dan jangan lupa di source
 
-5. build lagi packagenya dan jangan lupa di source
-
-6. jalankan rosrun rospy_simple_service simple_server_rospy.py
+5. jalankan
+   rosrun (servicePackageName) the_server_rospy.py
