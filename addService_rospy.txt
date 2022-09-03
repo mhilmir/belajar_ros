@@ -44,17 +44,17 @@
 ///                          Buat Server nya                              ///
 /////////////////////////////////////////////////////////////////////////////
 
-1. catkin_create_pkg rospy_simple_service_client rospy (srvPackageName), lalu masuk ke package directory nya.
+1. catkin_create_pkg rospy_simple_service rospy (srvPackageName), lalu masuk ke package directory nya.
 
 2. nah sekarang kita akan ganti struktur directory packagenya.
    hapus folder 'src', lalu buat dua folder bernama 'common' dan 'ros'.
    common adalah tempat kita menaruh hal-hal yang tidak berkaitan dengan ros.
    sedangkan ros adalah tempat kita menaruh hal-hal yang berkaitan dengan ros.
 
-3. masuk ke dalam folder 'ros' lalu buat folder 'src' (untuk menaruh .cpp) dan 'script' (untuk menaruh .py)
+3. masuk ke dalam folder 'ros' lalu buat folder 'src' (untuk menaruh .cpp) dan 'scripts' (untuk menaruh .py)
 
 4. buat servernya, misal namanya simple_server_rospy.py (contoh kode ada di folder ini), jangan lupa buat file tsb executable
 
 5. build lagi packagenya dan jangan lupa di source
 
-6. jalankan rosrun rospy_simple_service_client simple_server_rospy.py
+6. jalankan rosrun rospy_simple_service simple_server_rospy.py

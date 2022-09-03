@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 import rospy
-from (srvPackageName).srv import CountWords, CountWordsResponse
+from (srvPackageName).srv import (srvFileName), (srvFileName)Response
 
 def server_callback(req):
     rospy.loginfo("Received request: %s", req.words.data)
 
     words = req.words.data.split(" ")
-    resp = CountWordsResponse()
+    resp = (srvFileName)Response()
 
     if req.count_articles.data:
         english_articles = ["a", "an", "the"]
@@ -20,5 +20,5 @@ def server_callback(req):
 
 if __name__ == '__main__':
     rospy.init_node('rospy_simple_server_node', anonymous=False)
-    rospy.Service('rospy_word_count', CountWords, server_callback)
+    rospy.Service('rospy_word_count', (srvFileName), server_callback)
     rospy.spin()
