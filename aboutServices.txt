@@ -41,3 +41,8 @@ contohnya:
             std_msgs/Int32 num_articles
 
 selanjutnya kita bisa menambahkan file .srv ke CMakeList
+
+
+
+
+nb: client tidak harus berbentuk node, bisa dalam bentuk lain
