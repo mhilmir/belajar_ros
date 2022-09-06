@@ -44,7 +44,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////
-///                          Buat Server nya                              ///
+///                         Buat Server Rospy                             ///
 /////////////////////////////////////////////////////////////////////////////
 
 1. catkin_create_pkg (servicePackageName) rospy (srvPackageName)
@@ -58,18 +58,12 @@
         DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     )
 
-4. build lagi packagenya dan jangan lupa di source
-
-5. jalankan
+4. build lagi packagenya dan jangan lupa di source, lalu jalankan:
    rosrun (servicePackageName) the_server_rospy.py
 
 
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////
-///                          Buat Client nya                              ///
+///                         Buat Client Rospy                             ///
 /////////////////////////////////////////////////////////////////////////////
 1. boleh pake package yang sama dengan server, boleh beda
 
@@ -82,7 +76,60 @@
         DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     )
 
-4. build lagi packagenya dan jangan lupa di source
-
-5. jalankan
+4. build lagi packagenya dan jangan lupa di source, lalu jalankan:
    rosrun (servicePackageName) the_client_rospy.py
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+///                         Buat Server Roscpp                            ///
+/////////////////////////////////////////////////////////////////////////////
+
+1. catkin_create_pkg (servicePackageName) roscpp (srvPackageName)
+
+2. tambahkan node servernya, misal namanya the_server_roscpp.cpp (contoh kode ada di folder ini)
+
+3. tambahkan di CMakeList: (kayak node cpp pada umumnya)
+	add_executable(the_server_roscpp
+        src/the_server_roscpp.cpp
+    )
+    add_dependencies(the_server_roscpp
+        ${catkin_EXPORTED_TARGETS}
+    )
+	target_link_libraries(the_server_roscpp
+	  ${catkin_LIBRARIES}
+	)
+
+4. ini optional aja, karena kita di contoh ini pake algoritma CountWords,
+   kita tambahkan kode ini di awal CMakeList untuk memudahkan dalam split kata
+    
+    add_compile_options(-std=c++11)
+
+4. build lagi packagenya dan jangan lupa di source, lalu jalankan:
+   rosrun (servicePackageName) the_server_roscpp.cpp
+
+
+/////////////////////////////////////////////////////////////////////////////
+///                         Buat Client Roscpp                            ///
+/////////////////////////////////////////////////////////////////////////////
+1. boleh pake package yang sama dengan server, boleh beda
+
+2. tambahkan node clientnya, misal namanya the_client_roscpp.cpp (contoh kode ada di folder ini)
+
+3. tambahkan di CMakeList: (kayak node py pada umumnya)
+	add_executable(the_client_roscpp
+        src/the_client_roscpp.cpp
+    )
+    add_dependencies(the_client_roscpp
+        ${catkin_EXPORTED_TARGETS}
+    )
+	target_link_libraries(the_client_roscpp
+	  ${catkin_LIBRARIES}
+	)
+
+4. build lagi packagenya dan jangan lupa di source, lalu jalankan:
+   rosrun (servicePackageName) the_client_roscpp.cpp
