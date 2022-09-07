@@ -1,0 +1,16 @@
+Dalam menjalankan simulasi drone, gazebo-mavros-ros merupakan satu kesatuan.
+    -> gazebo bertindak sebagai lingkungan atau world tempat drone disimulasikan
+    -> ros bertindak sebagai alat pengontrol drone
+    -> mavros (mavlink-ros), merupakan protocol yang menghubungkan antara ros dan gazebo
+
+
+nb: (ini pentingg)
+Btw awal2 biasanya kalo gazebo baru diinstall, ada parameter sejenis failsafe drone yang harus kita setting dahulu.
+dengan kata lain, drone hanya bisa dibikin arming lewat rc(remote control)
+akibatnya kita gabisa nerbangin drone lewat mode offboard menggunakan mavros
+
+oleh karena itu, kita harus ubah parameter tersebut di aplikasi qgroundcontrol,
+caranya masuk ke aplikasi qgroundcontrol, lalu ke settings, ke parameter,
+cari parameter yang bernama COM_RCL_EXCEPT lalu klik parameter tsb,
+centang mission dan offboard, 
+lalu save
