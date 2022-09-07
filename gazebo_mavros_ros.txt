@@ -1,7 +1,8 @@
 Dalam menjalankan simulasi drone, gazebo-mavros-ros merupakan satu kesatuan.
     -> gazebo bertindak sebagai lingkungan atau world tempat drone disimulasikan
     -> ros bertindak sebagai alat pengontrol drone
-    -> mavros (mavlink-ros), merupakan protocol yang menghubungkan antara ros dan gazebo
+    -> mavros (mavlink-ros), merupakan protocol yang menghubungkan antara ros dan gazebo,
+       mavros inilah yang menyediakan topic-topic untuk drone agar kita bisa mengendalikannya
 
 
 nb: (ini pentingg)
